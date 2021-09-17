@@ -409,7 +409,7 @@ public void coje(){
         Iterator<String> nombreIterator = IpEs.iterator();
         while (nombreIterator.hasNext()) {
             String elemento = nombreIterator.next();
-            //System.out.println(elemento);
+            
             Main client = new Main("udp:" + elemento + "/161");
 
             try {
@@ -427,13 +427,13 @@ public void coje(){
             String ODIValue7 = client.getAsString(new OID(client.negroP));
             String copi = ("\n" + "Modelo ---" + ODIValue + "\n" + "Total ---" + ODIValue2
                     + "\n" + "Nº Serie ---" + ODIValue3 + "\n" + "Color ---" + ODIValue4
-                    + "\n" + "ColorP ---" + ODIValue5 + "\n" + "Negro ---" + ODIValue6 + "\n" + "NegroP ---" + ODIValue7);
+                    + "\n" + "ColorP ---" + ODIValue5 + "\n" + "Negro ---" + ODIValue6 + "\n" + "NegroP ---" + ODIValue7+"\n"+"\n");
             //System.out.println(copi);
 
-            for (int i = 0; i <= 0; i++) {
+          //  for (int i = 0; i <= 0; i++) {
                 Mensaje.append(copi);
                
-            }
+          //  }
 
         }
 

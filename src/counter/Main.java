@@ -79,9 +79,9 @@ public class Main {
             return event.getResponse().get(0).getVariable().toString();
         } catch (Exception e) {
             //e.printStackTrace();
-            System.out.println("Impresora Apagada");
+            //System.out.println("Impresora Apagada");
         
-        return "No conectado";
+        return "Impresora Apagada";
 }
     }
 
@@ -116,8 +116,8 @@ public class Main {
         CommunityTarget target = new CommunityTarget();
         target.setCommunity(new OctetString("public"));
         target.setAddress(targetAddress);
-        target.setRetries(1);
-        target.setTimeout(10);
+        target.setRetries(20);
+        target.setTimeout(30);
         target.setVersion(SnmpConstants.version2c);
 
         return target;
