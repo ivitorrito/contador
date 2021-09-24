@@ -284,12 +284,14 @@ public class Ventana extends javax.swing.JFrame {
         GuardarPropiedades();
  
         Enviar();
+     
 
     }
 public void coje(){
  Properties p = new Properties();
+ File archivo = new File("contadores.properties");
         try {
-            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("counter\\contadores.properties"));
+            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
             Ip1.setText(p.getProperty("uno"));
             Ip2.setText(p.getProperty("dos"));
             Ip3.setText(p.getProperty("tres"));
@@ -320,8 +322,7 @@ public void coje(){
     public void GuardarPropiedades() {
         Properties p = new Properties();
         try {
-          p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("counter\\contadores.properties"));
-
+          p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
             p.setProperty("uno", Ip1.getText());
             p.setProperty("dos", Ip2.getText());
             p.setProperty("tres", Ip3.getText());
@@ -346,7 +347,7 @@ public void coje(){
         }
         try {
             //Crea el archivo de propiedades
-            p.store(new BufferedWriter(new FileWriter("src\\counter\\contadores.properties")), "Valores");
+            p.store(new BufferedWriter(new FileWriter("contadores.properties")), "Valores");
         } catch (IOException ex) {
             System.out.println("Error: No se ha podido crear el archivo de propiedades");
         }
