@@ -281,15 +281,15 @@ public class Ventana extends javax.swing.JFrame {
 
         Ejecutar();
       
-        
-        //GuardarPropiedades();
+        GuardarPropiedades();
+ 
         Enviar();
 
     }
 public void coje(){
  Properties p = new Properties();
         try {
-            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
+            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("counter\\contadores.properties"));
             Ip1.setText(p.getProperty("uno"));
             Ip2.setText(p.getProperty("dos"));
             Ip3.setText(p.getProperty("tres"));
@@ -320,7 +320,7 @@ public void coje(){
     public void GuardarPropiedades() {
         Properties p = new Properties();
         try {
-           p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
+          p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("counter\\contadores.properties"));
 
             p.setProperty("uno", Ip1.getText());
             p.setProperty("dos", Ip2.getText());
@@ -341,7 +341,7 @@ public void coje(){
             p.setProperty("mail", Mail.getText());
             p.setProperty("cliente", Cliente.getText());
 
-        } catch (IOException ex) {
+       } catch (IOException ex) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
@@ -428,7 +428,7 @@ public void coje(){
             String copi = ("\n" + "Modelo ---" + ODIValue + "\n" + "Total ---" + ODIValue2
                     + "\n" + "Nº Serie ---" + ODIValue3 + "\n" + "Color ---" + ODIValue4
                     + "\n" + "ColorP ---" + ODIValue5 + "\n" + "Negro ---" + ODIValue6 + "\n" + "NegroP ---" + ODIValue7+"\n"+"\n");
-            //System.out.println(copi);
+          
 
           //  for (int i = 0; i <= 0; i++) {
                 Mensaje.append(copi);
@@ -471,6 +471,8 @@ public void coje(){
     }//GEN-LAST:event_ConfiguracionActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+       
+        
         System.exit(0);
     }//GEN-LAST:event_SalirActionPerformed
 
