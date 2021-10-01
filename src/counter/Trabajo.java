@@ -18,6 +18,6 @@ public class Trabajo implements Job{
     public void execute(JobExecutionContext jExeCtx) throws JobExecutionException {//handle JobExecutionException  
           
         //debug message   
-        log.debug("CreateQuartzJob is running......");  
+        log.debug("Clase Trabajo......");  
     }  
 }  

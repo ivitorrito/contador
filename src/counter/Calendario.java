@@ -16,8 +16,8 @@ import org.quartz.impl.StdSchedulerFactory;
 public class Calendario {  
    
       
-    private static final String NAME_OF_JOB = "Job1";  
-    private static final String NAME_OF_GROUP = "group1";  
+    private static final String NAME_OF_JOB = "trabajo";  
+    private static final String NAME_OF_GROUP = "grupo";  
     private static final String NAME_OF_TRIGGER = "triggerStart";  
       
     //create variable scheduler of type Scheduler  
@@ -29,7 +29,7 @@ public class Calendario {
         BasicConfigurator.configure();  
           
         //show message to know about the main thread   
-        System.out.println(" The name of the QuartzScheduler main thread is: " + Thread.currentThread().getName());  
+        System.out.println(" el nombre del trabajo es: " + Thread.currentThread().getName());  
           
         //initialize scheduler instance from Quartz  
         scheduler = new StdSchedulerFactory().getScheduler();  
@@ -60,7 +60,7 @@ public class Calendario {
     }  
       
     //create createTrigger() method that returns a trigger based on the time interval  
-   /* private static Trigger createCronTrigger() { 
+  /* private static Trigger createTrigger() { 
          
         //create cron expression 
         String CRON_EXPRESSION = "0 * * * * ?"; 
