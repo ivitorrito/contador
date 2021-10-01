@@ -14,8 +14,12 @@ import javax.swing.JOptionPane;
 import org.snmp4j.smi.OID;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import javax.swing.ImageIcon;
 import java.util.Properties;
+import javax.swing.Timer;
 
 public class Ventana extends javax.swing.JFrame {
 
@@ -33,12 +37,14 @@ public class Ventana extends javax.swing.JFrame {
             if (SystemTray.isSupported()) {
                 systemtray.add(trayicon);
                 this.setVisible(false);
+                 Fecha.setText(""+LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             }
         } catch (Exception es) {
             JOptionPane.showMessageDialog(this, es.getMessage());
         }
         coje();   
     }
+    
 
     private void instanciarTray() {
         trayicon = new TrayIcon(imageicon.getImage(), "Copiadoras Costaluz", popup);
@@ -83,6 +89,7 @@ public class Ventana extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Cliente = new javax.swing.JTextField();
         cerrar = new java.awt.Button();
+        Fecha = new javax.swing.JTextField();
 
         popup.setLabel("popupMenu1");
 
@@ -179,7 +186,10 @@ public class Ventana extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(78, 78, 78)
+                                        .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(Ip8)
@@ -260,12 +270,14 @@ public class Ventana extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                                 .addComponent(Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -289,7 +301,7 @@ public class Ventana extends javax.swing.JFrame {
     }
 public void coje(){
  Properties p = new Properties();
- File archivo = new File("contadores.properties");
+ 
         try {
             p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
             Ip1.setText(p.getProperty("uno"));
@@ -322,25 +334,25 @@ public void coje(){
     public void GuardarPropiedades() {
         Properties p = new Properties();
         try {
-          p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
-            p.setProperty("uno", Ip1.getText());
-            p.setProperty("dos", Ip2.getText());
-            p.setProperty("tres", Ip3.getText());
-            p.setProperty("cuatro", Ip4.getText());
-            p.setProperty("cinco", Ip5.getText());
-            p.setProperty("seis", Ip6.getText());
-            p.setProperty("siete", Ip7.getText());
-            p.setProperty("ocho", Ip8.getText());
-            p.setProperty("nueve", Ip9.getText());
-            p.setProperty("diez", Ip10.getText());
-            p.setProperty("once", Ip11.getText());
-            p.setProperty("doce", Ip12.getText());
-            p.setProperty("trece", Ip13.getText());
-            p.setProperty("catorce", Ip14.getText());
-            p.setProperty("quince", Ip15.getText());
-            p.setProperty("dieciseis", Ip16.getText());
-            p.setProperty("mail", Mail.getText());
-            p.setProperty("cliente", Cliente.getText());
+         p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
+            p.getProperty("uno", Ip1.getText());
+            p.getProperty("dos", Ip2.getText());
+            p.getProperty("tres", Ip3.getText());
+            p.getProperty("cuatro", Ip4.getText());
+            p.getProperty("cinco", Ip5.getText());
+            p.getProperty("seis", Ip6.getText());
+            p.getProperty("siete", Ip7.getText());
+            p.getProperty("ocho", Ip8.getText());
+            p.getProperty("nueve", Ip9.getText());
+            p.getProperty("diez", Ip10.getText());
+            p.getProperty("once", Ip11.getText());
+            p.getProperty("doce", Ip12.getText());
+            p.getProperty("trece", Ip13.getText());
+            p.getProperty("catorce", Ip14.getText());
+            p.getProperty("quince", Ip15.getText());
+            p.getProperty("dieciseis", Ip16.getText());
+            p.getProperty("mail", Mail.getText());
+            p.getProperty("cliente", Cliente.getText());
 
        } catch (IOException ex) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
@@ -472,8 +484,7 @@ public void coje(){
     }//GEN-LAST:event_ConfiguracionActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-       
-        
+ 
         System.exit(0);
     }//GEN-LAST:event_SalirActionPerformed
 
@@ -528,6 +539,7 @@ public void coje(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField Cliente;
     private java.awt.MenuItem Configuracion;
+    public javax.swing.JTextField Fecha;
     public javax.swing.JTextField Ip1;
     public javax.swing.JTextField Ip10;
     public javax.swing.JTextField Ip11;
