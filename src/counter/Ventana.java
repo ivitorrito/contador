@@ -20,6 +20,14 @@ import java.util.Calendar;
 import javax.swing.ImageIcon;
 import java.util.Properties;
 import javax.swing.Timer;
+import org.quartz.CronScheduleBuilder;
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
+import org.quartz.impl.StdSchedulerFactory;
 
 public class Ventana extends javax.swing.JFrame {
 
@@ -28,7 +36,7 @@ public class Ventana extends javax.swing.JFrame {
     private SystemTray systemtray;
 
     public Ventana() {
-
+ 
         imageicon = new ImageIcon(this.getClass().getResource("/images/logo.png"));
         initComponents();
         this.setIconImage(imageicon.getImage());
@@ -42,11 +50,23 @@ public class Ventana extends javax.swing.JFrame {
         } catch (Exception es) {
             JOptionPane.showMessageDialog(this, es.getMessage());
         }
-        coje();   
+        coje(); 
+       
     }
     
 
     private void instanciarTray() {
+        try {
+			JobDetail myJob = JobBuilder.newJob(Tarea1.class).withIdentity("myjob", "mygroup").build();
+			Trigger myTrigger = TriggerBuilder.newTrigger().withIdentity("mytrigger", "mygroup").startNow()
+					.withSchedule(CronScheduleBuilder.cronSchedule("0/30 * * * * ?")).build();
+			Scheduler myScheduler = new StdSchedulerFactory().getScheduler();
+                        //0 0 12 ? * 2L
+			myScheduler.start();
+			myScheduler.scheduleJob(myJob, myTrigger);
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+		}
         trayicon = new TrayIcon(imageicon.getImage(), "Copiadoras Costaluz", popup);
         trayicon.setImageAutoSize(true);
         systemtray = SystemTray.getSystemTray();
@@ -291,11 +311,9 @@ public class Ventana extends javax.swing.JFrame {
 
     private void botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActionPerformed
 
-        Ejecutar();
-      
-        GuardarPropiedades();
- 
-        Enviar();
+      //  Ejecutar();     
+     //   GuardarPropiedades();
+     //   Enviar();
      
 
     }
@@ -363,6 +381,7 @@ public void coje(){
         } catch (IOException ex) {
             System.out.println("Error: No se ha podido crear el archivo de propiedades");
         }
+        
     }
    public void Enviar(){
         Mail e = new Mail();
