@@ -34,9 +34,10 @@ public class Ventana extends javax.swing.JFrame {
     private ImageIcon imageicon;
     private TrayIcon trayicon;
     private SystemTray systemtray;
+    
 
     public Ventana() {
- 
+
         imageicon = new ImageIcon(this.getClass().getResource("/images/logo.png"));
         initComponents();
         this.setIconImage(imageicon.getImage());
@@ -50,26 +51,18 @@ public class Ventana extends javax.swing.JFrame {
         } catch (Exception es) {
             JOptionPane.showMessageDialog(this, es.getMessage());
         }
+        
         coje(); 
        
     }
     
 
     private void instanciarTray() {
-        try {
-			JobDetail myJob = JobBuilder.newJob(Tarea1.class).withIdentity("myjob", "mygroup").build();
-			Trigger myTrigger = TriggerBuilder.newTrigger().withIdentity("mytrigger", "mygroup").startNow()
-					.withSchedule(CronScheduleBuilder.cronSchedule("0/30 * * * * ?")).build();
-			Scheduler myScheduler = new StdSchedulerFactory().getScheduler();
-                        //0 0 12 ? * 2L
-			myScheduler.start();
-			myScheduler.scheduleJob(myJob, myTrigger);
-		} catch (SchedulerException e) {
-			e.printStackTrace();
-		}
+      
         trayicon = new TrayIcon(imageicon.getImage(), "Copiadoras Costaluz", popup);
         trayicon.setImageAutoSize(true);
         systemtray = SystemTray.getSystemTray();
+        
     }
 
     /**
@@ -310,12 +303,27 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActionPerformed
-
-      //  Ejecutar();     
-     //   GuardarPropiedades();
-     //   Enviar();
+ Ejecutar();
+       GuardarPropiedades();
+      Enviar();
+    
      
 
+    }
+    public void TareaDefinida(){
+       try {
+			JobDetail myJob = JobBuilder.newJob(Tarea1.class).withIdentity("myjob", "mygroup").build();
+			Trigger myTrigger = TriggerBuilder.newTrigger().withIdentity("mytrigger", "mygroup").startNow()
+					.withSchedule(CronScheduleBuilder.cronSchedule("0/30 * * * * ?")).build();
+			Scheduler myScheduler = new StdSchedulerFactory().getScheduler();
+                        //0 0 12 ? * 2L
+			myScheduler.start();
+			myScheduler.scheduleJob(myJob, myTrigger);
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+		}
+    
+    
     }
 public void coje(){
  Properties p = new Properties();
