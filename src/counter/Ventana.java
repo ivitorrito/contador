@@ -305,7 +305,7 @@ public class Ventana extends javax.swing.JFrame {
     private void botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActionPerformed
  Ejecutar();
        GuardarPropiedades();
-      Enviar();
+   Enviar();
     
      
 
@@ -320,7 +320,6 @@ public class Ventana extends javax.swing.JFrame {
 			myScheduler.start();
 			myScheduler.scheduleJob(myJob, myTrigger);
 		} catch (SchedulerException e) {
-			e.printStackTrace();
 		}
     
     
@@ -400,6 +399,7 @@ public void coje(){
             e.enviar(eMail, Cliente.getText(), copia);
             JOptionPane.showMessageDialog(null, st,
                     "MENSAJE ENVIADO!!", JOptionPane.INFORMATION_MESSAGE);
+
         } catch (MessagingException es) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, es);
             JOptionPane.showMessageDialog(null, "ooo",
@@ -519,7 +519,7 @@ public void coje(){
 
         try {
             if (SystemTray.isSupported()) {
-                systemtray.add(trayicon);
+                //systemtray.add(trayicon);
                 this.setVisible(false);
             }
         } catch (Exception es) {

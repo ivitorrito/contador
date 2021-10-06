@@ -13,11 +13,7 @@ public class Tarea1 implements Job {
 
     public void execute(JobExecutionContext context) throws JobExecutionException {
 
-        Ventana v = new Ventana();
-        v.Ejecutar();
-       v.GuardarPropiedades();
-       v.Enviar();
-        System.out.println("Que pasaaaaaaaaaa");
+   
     }
 
 }
