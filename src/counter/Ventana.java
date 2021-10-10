@@ -52,7 +52,7 @@ public class Ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, es.getMessage());
         }
         
-        coje(); 
+       coje(); 
        
     }
     
@@ -306,6 +306,9 @@ public class Ventana extends javax.swing.JFrame {
  Ejecutar();
        GuardarPropiedades();
    Enviar();
+    systemtray.remove(trayicon);
+        this.setVisible(false);
+  
     
      
 
@@ -516,15 +519,17 @@ public void coje(){
     }//GEN-LAST:event_SalirActionPerformed
 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
-
-        try {
+ try {
             if (SystemTray.isSupported()) {
-                //systemtray.add(trayicon);
+                systemtray.add(trayicon);
                 this.setVisible(false);
+                // Fecha.setText(""+LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             }
         } catch (Exception es) {
             JOptionPane.showMessageDialog(this, es.getMessage());
         }
+   //   this.setVisible(false);
+  
    
     }//GEN-LAST:event_cerrarActionPerformed
 
