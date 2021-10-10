@@ -34,7 +34,7 @@ public class Ventana extends javax.swing.JFrame {
     private ImageIcon imageicon;
     private TrayIcon trayicon;
     private SystemTray systemtray;
-    
+   
 
     public Ventana() {
 
@@ -53,6 +53,7 @@ public class Ventana extends javax.swing.JFrame {
         }
         
        coje(); 
+     
        
     }
     
