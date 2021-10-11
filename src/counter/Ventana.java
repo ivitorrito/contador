@@ -34,9 +34,8 @@ public class Ventana extends javax.swing.JFrame {
     private ImageIcon imageicon;
     private TrayIcon trayicon;
     private SystemTray systemtray;
-   
 
-    public Ventana() {
+    public void  Ventana() {
 
         imageicon = new ImageIcon(this.getClass().getResource("/images/logo.png"));
         initComponents();
@@ -46,24 +45,22 @@ public class Ventana extends javax.swing.JFrame {
             if (SystemTray.isSupported()) {
                 systemtray.add(trayicon);
                 this.setVisible(false);
-                 Fecha.setText(""+LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                Fecha.setText("" + LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             }
         } catch (Exception es) {
             JOptionPane.showMessageDialog(this, es.getMessage());
         }
-        
-       coje(); 
-     
-       
+
+        coje();
+
     }
-    
 
     private void instanciarTray() {
-      
+
         trayicon = new TrayIcon(imageicon.getImage(), "Copiadoras Costaluz", popup);
         trayicon.setImageAutoSize(true);
         systemtray = SystemTray.getSystemTray();
-        
+
     }
 
     /**
@@ -304,33 +301,19 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActionPerformed
- Ejecutar();
-       GuardarPropiedades();
-   Enviar();
-    systemtray.remove(trayicon);
+        Ejecutar();
+        GuardarPropiedades();
+        Enviar();
+        systemtray.remove(trayicon);
         this.setVisible(false);
-  
-    
-     
 
     }
-    public void TareaDefinida(){
-       try {
-			JobDetail myJob = JobBuilder.newJob(Tarea1.class).withIdentity("myjob", "mygroup").build();
-			Trigger myTrigger = TriggerBuilder.newTrigger().withIdentity("mytrigger", "mygroup").startNow()
-					.withSchedule(CronScheduleBuilder.cronSchedule("0/30 * * * * ?")).build();
-			Scheduler myScheduler = new StdSchedulerFactory().getScheduler();
-                        //0 0 12 ? * 2L
-			myScheduler.start();
-			myScheduler.scheduleJob(myJob, myTrigger);
-		} catch (SchedulerException e) {
-		}
-    
-    
-    }
-public void coje(){
- Properties p = new Properties();
- 
+
+
+
+    public void coje() {
+        Properties p = new Properties();
+
         try {
             p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
             Ip1.setText(p.getProperty("uno"));
@@ -348,22 +331,20 @@ public void coje(){
             Ip13.setText(p.getProperty("trece"));
             Ip14.setText(p.getProperty("catorce"));
             Ip15.setText(p.getProperty("quince"));
-            Ip16.setText(p.getProperty("dieciseis")); 
-           Mail.setText(p.getProperty("mail"));
-           Cliente.setText(p.getProperty("cliente"));
-         
-           
+            Ip16.setText(p.getProperty("dieciseis"));
+            Mail.setText(p.getProperty("mail"));
+            Cliente.setText(p.getProperty("cliente"));
 
         } catch (IOException ex) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
 
-}
     public void GuardarPropiedades() {
         Properties p = new Properties();
         try {
-         p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
+            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
             p.getProperty("uno", Ip1.getText());
             p.getProperty("dos", Ip2.getText());
             p.getProperty("tres", Ip3.getText());
@@ -383,7 +364,7 @@ public void coje(){
             p.getProperty("mail", Mail.getText());
             p.getProperty("cliente", Cliente.getText());
 
-       } catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
@@ -392,13 +373,14 @@ public void coje(){
         } catch (IOException ex) {
             System.out.println("Error: No se ha podido crear el archivo de propiedades");
         }
-        
+
     }
-   public void Enviar(){
+
+    public void Enviar() {
         Mail e = new Mail();
         String copia = Mensaje.getText();
         String eMail = Mail.getText();
-        String st = "Mensaje Enviado a Copiadoras Costaluz" + "\n" + "Muchas Gracias"; 
+        String st = "Mensaje Enviado a Copiadoras Costaluz" + "\n" + "Muchas Gracias";
         try {
             e.enviar(eMail, Cliente.getText(), copia);
             JOptionPane.showMessageDialog(null, st,
@@ -410,7 +392,6 @@ public void coje(){
                     "MENSAJE  no ENVIADO!!", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-
 
     public void Ejecutar() {
         String ip1 = Ip1.getText();
@@ -453,13 +434,13 @@ public void coje(){
         Iterator<String> nombreIterator = IpEs.iterator();
         while (nombreIterator.hasNext()) {
             String elemento = nombreIterator.next();
-            
-            Main client = new Main("udp:" + elemento + "/161");
+
+            SnmpConector client = new SnmpConector("udp:" + elemento + "/161");
 
             try {
                 client.start();
             } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SnmpConector.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             String ODIValue3 = client.getAsString(new OID(client.Oid3));
@@ -471,21 +452,17 @@ public void coje(){
             String ODIValue7 = client.getAsString(new OID(client.negroP));
             String copi = ("\n" + "Modelo ---" + ODIValue + "\n" + "Total ---" + ODIValue2
                     + "\n" + "Nº Serie ---" + ODIValue3 + "\n" + "Color ---" + ODIValue4
-                    + "\n" + "ColorP ---" + ODIValue5 + "\n" + "Negro ---" + ODIValue6 + "\n" + "NegroP ---" + ODIValue7+"\n"+"\n");
-          
+                    + "\n" + "ColorP ---" + ODIValue5 + "\n" + "Negro ---" + ODIValue6 + "\n" + "NegroP ---" + ODIValue7 + "\n" + "\n");
 
-          //  for (int i = 0; i <= 0; i++) {
-                Mensaje.append(copi);
-               
-          //  }
+            //  for (int i = 0; i <= 0; i++) {
+            Mensaje.append(copi);
 
+            //  }
         }
 
     }//GEN-LAST:event_botonActionPerformed
-  
-       
 
-    
+
     private void Ip2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ip2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Ip2ActionPerformed
@@ -510,28 +487,27 @@ public void coje(){
 
         systemtray.remove(trayicon);
         this.setVisible(true);
-        
+
 
     }//GEN-LAST:event_ConfiguracionActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
- 
+
         System.exit(0);
     }//GEN-LAST:event_SalirActionPerformed
 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
- try {
+        try {
             if (SystemTray.isSupported()) {
                 systemtray.add(trayicon);
                 this.setVisible(false);
-                // Fecha.setText(""+LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
             }
         } catch (Exception es) {
             JOptionPane.showMessageDialog(this, es.getMessage());
         }
-   //   this.setVisible(false);
-  
-   
+
+
     }//GEN-LAST:event_cerrarActionPerformed
 
     /**
@@ -560,7 +536,6 @@ public void coje(){
 //            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
-
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {

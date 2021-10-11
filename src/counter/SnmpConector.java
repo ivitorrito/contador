@@ -19,7 +19,7 @@ import org.snmp4j.smi.OctetString;
 import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 
-public class Main {
+public class SnmpConector {
 
     Snmp snmp = null;
     public String address = null;
@@ -36,18 +36,12 @@ public class Main {
      *
      * @param add
      */
-    public Main(String add) {
+    public SnmpConector(String add) {
 
         address = add;
 
     }
 
-    public static void main(String[] args) throws IOException {
-
-          Ventana ventana = new Ventana();
-          ventana.setVisible(false);
-
-    }
 
 
     /**
