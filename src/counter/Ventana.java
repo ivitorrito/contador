@@ -1,8 +1,6 @@
 package counter;
 
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,24 +14,14 @@ import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import javax.swing.ImageIcon;
 import java.util.Properties;
-import javax.swing.Timer;
-import org.quartz.CronScheduleBuilder;
-import org.quartz.JobBuilder;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
-import org.quartz.impl.StdSchedulerFactory;
 
 public class Ventana extends javax.swing.JFrame {
 
     private ImageIcon imageicon;
     private TrayIcon trayicon;
-    private SystemTray systemtray;
+    SystemTray systemtray;
 
     public void  Ventana() {
 
@@ -41,17 +29,19 @@ public class Ventana extends javax.swing.JFrame {
         initComponents();
         this.setIconImage(imageicon.getImage());
         instanciarTray();
+         
         try {
             if (SystemTray.isSupported()) {
                 systemtray.add(trayicon);
                 this.setVisible(false);
                 Fecha.setText("" + LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                
             }
         } catch (Exception es) {
             JOptionPane.showMessageDialog(this, es.getMessage());
         }
 
-        coje();
+      coje();
 
     }
 
@@ -315,7 +305,7 @@ public class Ventana extends javax.swing.JFrame {
         Properties p = new Properties();
 
         try {
-            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
+            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("counter/contadores.properties"));
             Ip1.setText(p.getProperty("uno"));
             Ip2.setText(p.getProperty("dos"));
             Ip3.setText(p.getProperty("tres"));
@@ -334,6 +324,7 @@ public class Ventana extends javax.swing.JFrame {
             Ip16.setText(p.getProperty("dieciseis"));
             Mail.setText(p.getProperty("mail"));
             Cliente.setText(p.getProperty("cliente"));
+             System.out.println("Entra en coje");
 
         } catch (IOException ex) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
@@ -344,7 +335,7 @@ public class Ventana extends javax.swing.JFrame {
     public void GuardarPropiedades() {
         Properties p = new Properties();
         try {
-            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
+            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("counter/contadores.properties"));
             p.getProperty("uno", Ip1.getText());
             p.getProperty("dos", Ip2.getText());
             p.getProperty("tres", Ip3.getText());

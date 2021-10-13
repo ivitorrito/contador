@@ -15,16 +15,16 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
-
 public class Principal {
-     
 
-public static void main(String[] args) throws IOException {
-          TareaDefinida();
+    public static void main(String[] args) throws IOException {
+        Ventana v = new Ventana();
+        v.Ventana();
+        TareaDefinida();
 
     }
 
- public static void TareaDefinida() {
+    public static void TareaDefinida() {
         try {
             JobDetail myJob = JobBuilder.newJob(Tarea1.class).withIdentity("myjob", "mygroup").build();
             Trigger myTrigger = TriggerBuilder.newTrigger().withIdentity("mytrigger", "mygroup").startNow()
@@ -37,9 +37,5 @@ public static void main(String[] args) throws IOException {
         }
 
     }
-
-
-
-
 
 }

@@ -15,16 +15,16 @@ import javax.mail.internet.MimeMessage;
 public class Mail {
 	private final Properties props; 
 
-	public Mail() {
+	public  Mail() {
            Ventana v = new Ventana();
-          String cliente= v.Cliente.getText();
+        // String cliente= v.Cliente.getText();
 		props = new Properties();
 
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "false");
 		props.put("mail.smtp.host", "212.227.15.158");
 		props.put("mail.smtp.port", "25");
-		props.put("from", cliente+"@copias.es");
+		props.put("from","contador@copias.es");
 		props.put("username", "sat@copiadorascostaluz.com");
 		props.put("password", "Sat1971");
 	}
