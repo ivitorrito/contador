@@ -305,7 +305,7 @@ public class Ventana extends javax.swing.JFrame {
         Properties p = new Properties();
 
         try {
-            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("counter/contadores.properties"));
+            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
             Ip1.setText(p.getProperty("uno"));
             Ip2.setText(p.getProperty("dos"));
             Ip3.setText(p.getProperty("tres"));
@@ -335,7 +335,7 @@ public class Ventana extends javax.swing.JFrame {
     public void GuardarPropiedades() {
         Properties p = new Properties();
         try {
-            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("counter/contadores.properties"));
+            p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
             p.getProperty("uno", Ip1.getText());
             p.getProperty("dos", Ip2.getText());
             p.getProperty("tres", Ip3.getText());
