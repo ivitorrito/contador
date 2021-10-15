@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import org.snmp4j.smi.OID;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
@@ -336,31 +337,33 @@ public class Ventana extends javax.swing.JFrame {
         Properties p = new Properties();
         try {
             p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("contadores.properties"));
-            p.getProperty("uno", Ip1.getText());
-            p.getProperty("dos", Ip2.getText());
-            p.getProperty("tres", Ip3.getText());
-            p.getProperty("cuatro", Ip4.getText());
-            p.getProperty("cinco", Ip5.getText());
-            p.getProperty("seis", Ip6.getText());
-            p.getProperty("siete", Ip7.getText());
-            p.getProperty("ocho", Ip8.getText());
-            p.getProperty("nueve", Ip9.getText());
-            p.getProperty("diez", Ip10.getText());
-            p.getProperty("once", Ip11.getText());
-            p.getProperty("doce", Ip12.getText());
-            p.getProperty("trece", Ip13.getText());
-            p.getProperty("catorce", Ip14.getText());
-            p.getProperty("quince", Ip15.getText());
-            p.getProperty("dieciseis", Ip16.getText());
-            p.getProperty("mail", Mail.getText());
-            p.getProperty("cliente", Cliente.getText());
+            p.setProperty("uno", Ip1.getText());
+            p.setProperty("dos", Ip2.getText());
+            p.setProperty("tres", Ip3.getText());
+            p.setProperty("cuatro", Ip4.getText());
+            p.setProperty("cinco", Ip5.getText());
+            p.setProperty("seis", Ip6.getText());
+            p.setProperty("siete", Ip7.getText());
+            p.setProperty("ocho", Ip8.getText());
+            p.setProperty("nueve", Ip9.getText());
+            p.setProperty("diez", Ip10.getText());
+            p.setProperty("once", Ip11.getText());
+            p.setProperty("doce", Ip12.getText());
+            p.setProperty("trece", Ip13.getText());
+            p.setProperty("catorce", Ip14.getText());
+            p.setProperty("quince", Ip15.getText());
+            p.setProperty("dieciseis", Ip16.getText());
+            p.setProperty("mail", Mail.getText());
+            p.setProperty("cliente", Cliente.getText());
+            System.out.println("Entra en GuardarPropiedades");
 
         } catch (IOException ex) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            //Crea el archivo de propiedades
-            p.store(new BufferedWriter(new FileWriter("contadores.properties")), "Valores");
+       
+       try {
+         p.store(new BufferedWriter(new FileWriter("src\\contadores.properties")), "Valores");
+            System.out.println("crea el archivo GuardarPropiedades");
         } catch (IOException ex) {
             System.out.println("Error: No se ha podido crear el archivo de propiedades");
         }
