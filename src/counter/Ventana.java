@@ -389,6 +389,7 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     public void Ejecutar() {
+        
         String ip1 = Ip1.getText();
       //  String ip2 = Ip2.getText();
      //   String ip3 = Ip3.getText();
@@ -436,17 +437,19 @@ public class Ventana extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(SnmpConector.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            String ODIValue3 = client.getAsString(new OID(client.Oid3));
-            String ODIValue = client.getAsString(new OID(client.Oid));
-            String ODIValue2 = client.getAsString(new OID(client.Ricoh));
-            String ODIValue4 = client.getAsString(new OID(client.color));
-            String ODIValue5 = client.getAsString(new OID(client.colorP));
-            String ODIValue6 = client.getAsString(new OID(client.negro));
-            String ODIValue7 = client.getAsString(new OID(client.negroP));
-            String copi = ("\n" + "Modelo ---" + ODIValue + "\n" + "Total ---" + ODIValue2
-                    + "\n" + "Nº Serie ---" + ODIValue3 + "\n" + "Color ---" + ODIValue4
-                    + "\n" + "ColorP ---" + ODIValue5 + "\n" + "Negro ---" + ODIValue6 + "\n" + "NegroP ---" + ODIValue7 + "\n" + "\n");
+            
+            String NSerie = client.getAsString(new OID(client.Oid3));
+            String Modelo = client.getAsString(new OID(client.Oid));
+            String Total = client.getAsString(new OID(client.Ricoh));
+            String Color = client.getAsString(new OID(client.color));
+            String ColorPrint = client.getAsString(new OID(client.colorP));
+            String Negro = client.getAsString(new OID(client.negro));
+            String NegroPrint = client.getAsString(new OID(client.negroP));
+            Maquinas maquinas = new Maquinas(NSerie, Modelo, Total, Color, ColorPrint, Negro, NegroPrint);
+            maquinas.setNSerie(NSerie);
+            String copi = ("\n" + "Modelo ---" + Modelo + "\n" + "Total ---" + Total
+                    + "\n" + "Nº Serie ---" + NSerie + "\n" + "Color ---" + Color
+                    + "\n" + "ColorP ---" + ColorPrint + "\n" + "Negro ---" + Negro + "\n" + "NegroP ---" + NegroPrint + "\n" + "\n");
 
             //  for (int i = 0; i <= 0; i++) {
             Mensaje.append(copi);
