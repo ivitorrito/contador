@@ -391,7 +391,7 @@ public class Ventana extends javax.swing.JFrame {
     public void Ejecutar() {
         
         String ip1 = Ip1.getText();
-      //  String ip2 = Ip2.getText();
+       String ip2 = Ip2.getText();
      //   String ip3 = Ip3.getText();
      //   String ip4 = Ip4.getText();
     //    String ip5 = Ip5.getText();
@@ -408,7 +408,7 @@ public class Ventana extends javax.swing.JFrame {
 
         ArrayList<String> IpEs = new ArrayList<>();
         IpEs.add(ip1);
-       // IpEs.add(ip2);
+        IpEs.add(ip2);
        // IpEs.add(ip3);
        // IpEs.add(ip4);
       //  IpEs.add(ip5);
