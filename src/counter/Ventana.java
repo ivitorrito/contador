@@ -447,6 +447,7 @@ public class Ventana extends javax.swing.JFrame {
             String NegroPrint = client.getAsString(new OID(client.negroP));
             Maquinas maquinas = new Maquinas(NSerie, Modelo, Total, Color, ColorPrint, Negro, NegroPrint);
             maquinas.setNSerie(NSerie);
+            maquinas.setModelo(Modelo);
             String copi = ("\n" + "Modelo ---" + Modelo + "\n" + "Total ---" + Total
                     + "\n" + "Nº Serie ---" + NSerie + "\n" + "Color ---" + Color
                     + "\n" + "ColorP ---" + ColorPrint + "\n" + "Negro ---" + Negro + "\n" + "NegroP ---" + NegroPrint + "\n" + "\n");

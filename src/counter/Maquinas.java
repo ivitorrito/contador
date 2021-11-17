@@ -2,8 +2,8 @@ package counter;
 
 public class Maquinas {
 
-    String NSerie;
-    String Modelo;
+    static String NSerie;
+    static String Modelo;
     String Total;
     String Color;
     String ColorPrint;
@@ -12,8 +12,8 @@ public class Maquinas {
 
     Maquinas(String NSerie, String Modelo, String Total, String Color, String ColorPrint, String Negro, String NegroPrint) {
 
-        this.NSerie = NSerie;
-        this.Modelo = Modelo;
+        Maquinas.NSerie = NSerie;
+        Maquinas.Modelo = Modelo;
         this.Total = Total;
         this.Color = Color;
         this.ColorPrint = ColorPrint;
@@ -21,20 +21,22 @@ public class Maquinas {
         this.NegroPrint = NegroPrint;
     }
 
-    public String getNSerie() {
+   
+
+    public static String getNSerie() {
         return NSerie;
     }
 
     public void setNSerie(String NSerie) {
-        this.NSerie = NSerie;
+        Maquinas.NSerie = NSerie;
     }
 
-    public String getModelo() {
+    public static String getModelo() {
         return Modelo;
     }
 
     public void setModelo(String Modelo) {
-        this.Modelo = Modelo;
+        Maquinas.Modelo = Modelo;
     }
 
     public String getTotal() {

@@ -15,8 +15,12 @@ public class Tarea1 implements Job {
         v.Ejecutar();
         System.out.print("Ejecutado" + "\n");
         v.GuardarPropiedades();
+        System.out.print(Maquinas.getNSerie()+"\n");
+        System.out.print(Maquinas.getModelo()+"\n");
         v.Enviar();
         System.out.print("Todo OK" + "\n");
+       
+         
  
         //System.out.print("este es el String  ."+v.ODIValue4);
         
