@@ -24,7 +24,7 @@ public class Principal {
         try {
             JobDetail myJob = JobBuilder.newJob(Tarea1.class).withIdentity("myjob", "mygroup").build();
             Trigger myTrigger = TriggerBuilder.newTrigger().withIdentity("mytrigger", "mygroup").startNow()
-                    .withSchedule(CronScheduleBuilder.cronSchedule("0 0/5 * * * ?")).build();
+                    .withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 * * * ?")).build();
             Scheduler myScheduler = new StdSchedulerFactory().getScheduler();
             //0 0 12 ? * 2L
             myScheduler.start();

@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import org.snmp4j.smi.OID;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
-import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
@@ -23,6 +22,7 @@ public class Ventana extends javax.swing.JFrame {
     private ImageIcon imageicon;
     private TrayIcon trayicon;
     SystemTray systemtray;
+    
 
     public void  Ventana() {
 
@@ -30,6 +30,7 @@ public class Ventana extends javax.swing.JFrame {
         initComponents();
         this.setIconImage(imageicon.getImage());
         instanciarTray();
+      
          
         try {
             if (SystemTray.isSupported()) {
@@ -389,39 +390,38 @@ public class Ventana extends javax.swing.JFrame {
 
     public void Ejecutar() {
         String ip1 = Ip1.getText();
-        String ip2 = Ip2.getText();
-        String ip3 = Ip3.getText();
-        String ip4 = Ip4.getText();
-        String ip5 = Ip5.getText();
-        String ip6 = Ip6.getText();
-        String ip7 = Ip7.getText();
-        String ip8 = Ip8.getText();
-        String ip9 = Ip9.getText();
-        String ip10 = Ip10.getText();
-        String ip11 = Ip11.getText();
-        String ip12 = Ip12.getText();
-        String ip13 = Ip13.getText();
-        String ip14 = Ip14.getText();
-        String ip15 = Ip15.getText();
-        String ip16 = Ip16.getText();
+      //  String ip2 = Ip2.getText();
+     //   String ip3 = Ip3.getText();
+     //   String ip4 = Ip4.getText();
+    //    String ip5 = Ip5.getText();
+    //    String ip6 = Ip6.getText();
+     //   String ip7 = Ip7.getText();
+     //   String ip8 = Ip8.getText();
+     //   String ip9 = Ip9.getText();
+   //     String ip10 = Ip10.getText();
+    //    String ip11 = Ip11.getText();
+       // String ip12 = Ip12.getText();
+       // String ip13 = Ip13.getText();
+      //  String ip15 = Ip15.getText();
+     //   String ip16 = Ip16.getText();
 
         ArrayList<String> IpEs = new ArrayList<>();
         IpEs.add(ip1);
-        IpEs.add(ip2);
-        IpEs.add(ip3);
-        IpEs.add(ip4);
-        IpEs.add(ip5);
-        IpEs.add(ip6);
-        IpEs.add(ip7);
-        IpEs.add(ip8);
-        IpEs.add(ip9);
-        IpEs.add(ip10);
-        IpEs.add(ip11);
-        IpEs.add(ip12);
-        IpEs.add(ip13);
-        IpEs.add(ip14);
-        IpEs.add(ip15);
-        IpEs.add(ip16);
+       // IpEs.add(ip2);
+       // IpEs.add(ip3);
+       // IpEs.add(ip4);
+      //  IpEs.add(ip5);
+     //   IpEs.add(ip6);
+     //   IpEs.add(ip7);
+     //   IpEs.add(ip8);
+     //   IpEs.add(ip9);
+      //  IpEs.add(ip10);
+      //  IpEs.add(ip11);
+     //   IpEs.add(ip12);
+     //   IpEs.add(ip13);
+     //   IpEs.add(ip14);
+     //   IpEs.add(ip15);
+    //    IpEs.add(ip16);
 
         for (int i = 1; i <= 17; i++) {
         }

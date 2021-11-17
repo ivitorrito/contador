@@ -70,6 +70,7 @@ public class SnmpConector {
         ResponseEvent event = null;
         try {
             event = get(new OID[]{oid});
+            
             return event.getResponse().get(0).getVariable().toString();
         } catch (Exception e) {
             //e.printStackTrace();
