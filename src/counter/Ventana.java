@@ -16,6 +16,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
 import java.util.Properties;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Ventana extends javax.swing.JFrame {
 
@@ -44,6 +47,7 @@ public class Ventana extends javax.swing.JFrame {
         }
 
       coje();
+     
 
     }
 
@@ -445,9 +449,16 @@ public class Ventana extends javax.swing.JFrame {
             String ColorPrint = client.getAsString(new OID(client.colorP));
             String Negro = client.getAsString(new OID(client.negro));
             String NegroPrint = client.getAsString(new OID(client.negroP));
-            Maquinas maquinas = new Maquinas(NSerie, Modelo, Total, Color, ColorPrint, Negro, NegroPrint);
+            Maquinas maquinas = new Maquinas();
             maquinas.setNSerie(NSerie);
             maquinas.setModelo(Modelo);
+            maquinas.setTotal(Total);
+            maquinas.setColor(Color);
+            maquinas.setColorPrint(ColorPrint);
+            maquinas.setNegro(Negro);
+            maquinas.setNegroPrint(NegroPrint);
+            System.out.print(maquinas.getNSerie()+"\n");
+         
             String copi = ("\n" + "Modelo ---" + Modelo + "\n" + "Total ---" + Total
                     + "\n" + "Nº Serie ---" + NSerie + "\n" + "Color ---" + Color
                     + "\n" + "ColorP ---" + ColorPrint + "\n" + "Negro ---" + Negro + "\n" + "NegroP ---" + NegroPrint + "\n" + "\n");
@@ -459,7 +470,31 @@ public class Ventana extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_botonActionPerformed
+public void Mysql(){
+    String sql1 = "insert into  modelos  (NSerie,Modelo,Total,Color,ColorPrint,Negro,NegroPrint)values(?,?,?,?,?,?,?)";
+         try {
+             //System.out.print(Maquinas.getNSerie()+"\n");
+            ConexionMysql conectar = new ConexionMysql();
+            PreparedStatement ps;
+            Connection con = conectar.getConnection();
+            ps = con.prepareStatement(sql1);
+          Maquinas m = new Maquinas();
+           
+            ps.setString(1,m.getNSerie());
+            ps.setString(2, m.getModelo());
+            ps.setString(3, m.getTotal());
+            ps.setString(4, m.getColor());
+            ps.setString(5, m.getColorPrint());
+            ps.setString(6, m.getNegro());
+            ps.setString(7, m.getNegroPrint());
+            ps.execute();
+             System.out.print(m.getNSerie()+"\n");
+          JOptionPane.showMessageDialog(null, "Aviso Cerrado y Guardado");   
+          
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "FALTAN LAS COPIAS"); 
 
+}}
 
     private void Ip2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ip2ActionPerformed
         // TODO add your handling code here:

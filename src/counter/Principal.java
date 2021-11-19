@@ -16,6 +16,7 @@ public class Principal {
     public static void main(String[] args) throws IOException {
         Ventana v = new Ventana();
         v.Ventana();
+      
         TareaDefinida();
 
     }

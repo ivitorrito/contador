@@ -10,7 +10,7 @@ public class Maquinas {
     String Negro;
     String NegroPrint;
 
-    Maquinas(String NSerie, String Modelo, String Total, String Color, String ColorPrint, String Negro, String NegroPrint) {
+   /* Maquinas(String NSerie, String Modelo, String Total, String Color, String ColorPrint, String Negro, String NegroPrint) {
 
         this.NSerie = NSerie;
         this.Modelo = Modelo;
@@ -19,7 +19,10 @@ public class Maquinas {
         this.ColorPrint = ColorPrint;
         this.Negro = Negro;
         this.NegroPrint = NegroPrint;
-    }
+    }*/
+
+ 
+
 
    
 

@@ -13,12 +13,14 @@ public class Tarea1 implements Job {
          System.out.print("Hola2" + "\n");
         v.Ventana();
         v.Ejecutar();
+        
         System.out.print("Ejecutado" + "\n");
         v.GuardarPropiedades();
-        
-       // System.out.print(Maquinas.getNSerie()+"\n");
-      //  System.out.print(Maquinas.getModelo()+"\n");
+
+       //System.out.print(Maquinas.getNSerie()+"\n");
+      //System.out.print(maquinas.getModelo()+"\n");
         v.Enviar();
+        v.Mysql();
         System.out.print("Todo OK" + "\n");
        
          
